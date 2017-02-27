@@ -1,0 +1,48 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.1.RELEASE'
+        propDepsVersion   = '0.0.7'
+	}
+	repositories {
+		mavenCentral()
+        maven { url 'http://repo.spring.io/plugins-release' }
+	}
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+        classpath "org.springframework.build.gradle:propdeps-plugin:$propDepsVersion"
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'propdeps'
+
+jar {
+	baseName = 'service-bus-jms-demo'
+	version = '0.0.1-SNAPSHOT'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+    commonsLangVersion = '3.5'
+	qpidVersion        = '0.10.0'
+}
+
+dependencies {
+    compile 'javax.jms:jms-api'
+    compile "org.apache.commons:commons-lang3:$commonsLangVersion"
+	compile "org.apache.qpid:qpid-jms-client:$qpidVersion"
+    compile 'com.fasterxml.jackson.core:jackson-databind'
+    compile 'org.springframework.boot:spring-boot-starter'
+	compile 'org.springframework:spring-jms'
+
+    optional 'org.springframework.boot:spring-boot-configuration-processor'
+
+	testCompile 'org.springframework.boot:spring-boot-starter-test'
+}

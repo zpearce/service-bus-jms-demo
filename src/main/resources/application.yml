@@ -1,0 +1,14 @@
+#put actual values in application-default.yml, which is .gitignore-d
+serviceBus:
+  client-id: changeMe
+  host: changeMe
+  sharedAccessPolicyName: changeMe
+  sharedAccessPolicyKey: changeMe
+
+spring:
+  jms:
+    pub-sub-domain: true #sets up Spring's JmsTemplate to be able to publish to topics
+
+logging:
+  level:
+    org.apache.qpid: TRACE
